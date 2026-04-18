@@ -103,7 +103,7 @@ Total Amount: ₹50✅
 🌍 Multi-language support
 📸 Screenshots
 ---
-## Dashboard Preview
+Add screenshots here (UI + Output)
 <img width="1352" height="536" alt="Image" src="https://github.com/user-attachments/assets/7459ec67-66d4-4cf5-ba2f-6cfe7cbf49a1" />
 
 <img width="1181" height="494" alt="Image" src="https://github.com/user-attachments/assets/7bfed056-2a9b-4b9f-bbcf-260fbc24e453" />
