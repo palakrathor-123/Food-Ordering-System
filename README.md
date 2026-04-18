@@ -104,7 +104,13 @@ Total Amount: ₹50✅
 📸 Screenshots
 
 ## Dashboard Preview
+<img width="1352" height="536" alt="Image" src="https://github.com/user-attachments/assets/7459ec67-66d4-4cf5-ba2f-6cfe7cbf49a1" />
 
+<img width="1181" height="494" alt="Image" src="https://github.com/user-attachments/assets/7bfed056-2a9b-4b9f-bbcf-260fbc24e453" />
+
+<img width="1120" height="476" alt="Image" src="https://github.com/user-attachments/assets/24914245-986b-46ea-824d-f64c84a767e4" />
+
+<img width="628" height="553" alt="Image" src="https://github.com/user-attachments/assets/932306f0-5b14-489c-9277-247819de1a5e" />
 
 This project demonstrates real-world applications of:
 
