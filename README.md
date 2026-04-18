@@ -72,6 +72,7 @@ Open frontend/index.html
 or use live server in vs code
 
 ```
+---
 
 🎯 Usage Guide
 Open frontend/index.html in your browser.
@@ -81,14 +82,14 @@ View the Matched Items and Order Summary instantly.
 The system will automatically disconnect 🔴 once the order is finalized.
 
 ---
-📊 Sample Output Example
-Matched Items:
+*📊 Sample Output Example
+*Matched Items:
 Diet Coke
-Order Summary:
+*Order Summary:
 Diet Coke x1 = ₹50
-Total Summary:
+*Total Summary:
 Items: 1
-Total Amount: ₹50✅
+*Total Amount: ₹50✅
 ---
 🧠 How It Works
 🎤 Speech is captured using Web Speech API
@@ -117,6 +118,8 @@ Add screenshots here (UI + Output)
 
 <img width="628" height="553" alt="Image" src="https://github.com/user-attachments/assets/932306f0-5b14-489c-9277-247819de1a5e" />
 ---
+
+
 This project demonstrates real-world applications of:
 
 AI in food ordering systems
@@ -130,3 +133,4 @@ Palak Rathor
 ⭐  Support
 
 If you found this project helpful, please consider giving it a ⭐ on GitHub!
+---
