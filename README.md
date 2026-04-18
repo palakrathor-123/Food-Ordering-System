@@ -115,7 +115,7 @@ Add screenshots here (UI + Output)
 <img width="1120" height="476" alt="Image" src="https://github.com/user-attachments/assets/24914245-986b-46ea-824d-f64c84a767e4" />
 
 <img width="628" height="553" alt="Image" src="https://github.com/user-attachments/assets/932306f0-5b14-489c-9277-247819de1a5e" />
----
+
 
 
 This project demonstrates real-world applications of:
