@@ -71,7 +71,7 @@ uvicorn app.main:app --reload
 Open frontend/index.html
 or use live server in vs code
 
----
+```
 
 🎯 Usage Guide
 Open frontend/index.html in your browser.
