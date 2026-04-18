@@ -58,7 +58,7 @@ voice-ordering-app/
 ## ⚙️ Installation & Setup
 
 ### 1️⃣ Clone Repository
-
+---
 ```bash
 git clone https://github.com/Ruchi-novadule/voice-ordering-ai-app.git 
 cd voice-ordering-ai-app
@@ -69,6 +69,7 @@ uvicorn app.main:app --reload
 4️⃣ Run Frontend
 Open frontend/index.html
 or use live server in vs code
+---
 
 🎯 Usage Guide
 Open frontend/index.html in your browser.
@@ -76,7 +77,7 @@ Click the "Start Speaking" 🟢 button.
 Place your order: "I want chocolate brownie" 🍔🥤.
 View the Matched Items and Order Summary instantly.
 The system will automatically disconnect 🔴 once the order is finalized.
-
+---
 📊 Sample Output Example
 Matched Items:
 Diet Coke
@@ -85,7 +86,7 @@ Diet Coke x1 = ₹50
 Total Summary:
 Items: 1
 Total Amount: ₹50✅
-
+---
 🧠 How It Works
 🎤 Speech is captured using Web Speech API
 📝 Converted to text in real-time
