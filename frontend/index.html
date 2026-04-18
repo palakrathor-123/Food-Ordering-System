@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Voice Ordering App 🎤</title>
+    <style>
+        /* Pura page center karne ke liye styles */
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background-color: #f0f2f5; /* Light grey background */
+            display: flex;
+            justify-content: center; /* Horizontal center */
+            align-items: center;     /* Vertical center */
+            min-height: 100vh;       /* Screen ki poori height use karega */
+            margin: 0; 
+            padding: 20px;
+        }
+
+        /* Card jaisa box banane ke liye */
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+        }
+
+        .buttons { margin: 20px 0; }
+
+        button {
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 8px;
+            border: none;
+            margin: 5px;
+            transition: 0.3s;
+        }
+
+        #startBtn { background-color: #28a745; color: white; }
+        #startBtn:hover { background-color: #218838; }
+
+        #stopBtn { background-color: #dc3545; color: white; }
+        #stopBtn:hover { background-color: #c82333; }
+
+        button:disabled { 
+            background-color: #ccc !important; 
+            cursor: not-allowed; 
+        }
+
+        #status { height: 20px; color: #555; font-weight: bold; margin-bottom: 15px; }
+        
+        #output { 
+            color: #007bff; 
+            font-style: italic; 
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        pre {
+            background: #333;
+            color: #00ff00; /* Hacker style green text */
+            padding: 15px;
+            border-radius: 8px;
+            text-align: left;
+            overflow-x: auto;
+            font-size: 14px;
+        }
+
+        h2 { color: #333; margin-top: 0; }
+        h3 { color: #555; font-size: 18px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>🎤 Voice Ordering App</h2>
+
+        <div class="buttons">
+            <button id="startBtn" onclick="startListening()">Start Speaking</button>
+            <button id="stopBtn" onclick="stopListening()" disabled>Stop/Disconnect</button>
+        </div>
+
+        <p id="status"></p>
+
+        <h3>📝 Your Speech:</h3>
+        <p id="output">Waiting for you to speak...</p>
+
+        <hr style="border: 0.5px solid #eee; margin: 20px 0;">
+
+        <h3>🍔 Matched Items:</h3>
+        <p id="result" style="font-weight: bold; color: #28a745;"></p>
+
+        <h3>🧾 Order Summary:</h3>
+        <pre id="summary">Order summary will appear here...</pre>
+    </div>
+
+<script>
+let recognition;
+const startBtn = document.getElementById("startBtn");
+const stopBtn = document.getElementById("stopBtn");
+const status = document.getElementById("status");
+
+const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+if (!SpeechRecognition) {
+    alert("Your browser does not support Speech Recognition. Please use Chrome.");
+} else {
+    recognition = new SpeechRecognition();
+    recognition.continuous = true;
+    recognition.interimResults = true;
+
+    recognition.onstart = () => {
+        status.innerText = "Listening... 🎙️";
+        startBtn.disabled = true;
+        stopBtn.disabled = false;
+    };
+
+    recognition.onend = () => {
+        status.innerText = "Disconnected/Stopped ❌";
+        startBtn.disabled = false;
+        stopBtn.disabled = true;
+    };
+
+    recognition.onresult = function(event) {
+        let transcript = "";
+        for (let i = event.resultIndex; i < event.results.length; i++) {
+            transcript += event.results[i][0].transcript;
+        }
+
+        document.getElementById("output").innerText = transcript;
+
+        if (event.results[event.results.length - 1].isFinal) {
+            sendToBackend(transcript);
+            setTimeout(() => stopListening(), 1000); 
+        }
+    };
+
+    recognition.onerror = (event) => {
+        console.error("Speech Error:", event.error);
+        status.innerText = "Error: " + event.error;
+        stopListening();
+    };
+}
+
+function startListening() {
+    recognition.start();
+}
+
+function stopListening() {
+    recognition.stop();
+}
+
+function sendToBackend(text) {
+    status.innerText = "Processing order... ⏳";
+    fetch("http://127.0.0.1:8000/match-order", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ text: text })
+    })
+    .then(res => res.json())
+    .then(data => {
+        document.getElementById("result").innerText = data.matched_items.join(", ");
+        let summaryText = data.order_summary.join("\n");
+        summaryText += "\n\nTotal items: " + data.total_items;
+        summaryText += "\nTotal price: ₹" + data.total_price;
+        document.getElementById("summary").innerText = summaryText;
+        status.innerText = "Order Completed! ✅";
+    })
+    .catch(err => {
+        console.error(err);
+        status.innerText = "Backend Error ❌";
+    });
+}
+</script>
+
+</body>
+</html>
