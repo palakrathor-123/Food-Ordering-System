@@ -70,9 +70,7 @@ uvicorn app.main:app --reload
 4️⃣ Run Frontend
 Open frontend/index.html
 or use live server in vs code
-
 ```
----
 
 🎯 Usage Guide
 Open frontend/index.html in your browser.
@@ -126,8 +124,8 @@ AI in food ordering systems
 Voice-based interfaces
 NLP-based intent recognition
 Automation in restaurants
-👩‍💻 Author
 
+👩‍💻 Author
 Palak Rathor
 
 ⭐  Support
